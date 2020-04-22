@@ -17,14 +17,14 @@
         <p class="highscores"><a href="#finalPage">View Highscores</a></p>
 
         <!-- the first page by default will appear -->
-        <div id = "startPage" style="display : block;">
+        <div id = "startPage" style = "display : block">
             <h1>Coding Quiz Challenge</h1>
             <p>Press start to test yourself in Coding!</p>
             <button id="start-quiz" class="btn">Start Quiz</button>
         </div>
 
         <!-- quiz section -->
-        <section id="quiz" style="display : none;">
+        <section id="quiz"  style = "display : none">
             <div id="question">
                 <p> Question: </p>
             </div>
@@ -35,24 +35,27 @@
                 <div class="choice" id="B" onclick="checkAnswer('B')">B</div>
                 <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
                 <div class="choice" id="D" onclick="checkAnswer('D')">D</div>
+                <!-- <button id="next" class="btn">Next</button> -->
             </div>
+        <h4>Correct!<span id="correct"></span></h4>
+        <h4>Incorrect!<span id="incorrect"></span></h4>
         </section>
 
         <!-- Quiz is over -->
-        <section id="finalScores" style="display : none;">
+        <section id="finalScores" style = "display : none">
             <h1>All Done!</h1>
             <!-- Enter initials with Submit button -->
             <form id="form">
                 <div>
-                    <p>Your score: </p>
-                    <input type="text" id="total"/>    Enter your initials 
-                    <button id="submit" class="btn">Submit</button>
+                    <h4>Your Score: <span id="score"></span></h4>
+                    <input type="text" id="initials"/>    Enter your initials 
+                    <button id="submit" class="btn02">Submit</button>
                 </div>
             </form>
         </section>
 
         <!-- last page, play again or view highscores -->
-        <section id="finalPage" style="display : none;">
+        <section id="finalPage"  style = "display : none">
             <p class="playAgain">Play Again?</p>
             <button id="playAgain" class="btn02">Play Again</button>
             <button id="clearHighscores" class="btn02">Clear highscores</button>
