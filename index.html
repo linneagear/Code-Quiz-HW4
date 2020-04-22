@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div id="timer">
+            <!-- timer starts at 500 seconds -->
+            <div id="counter">500</div>
+        </div>
+        <div id="highscores">View Highscores</div>
+
+        <div id = "startPage" style="display : block;">
+            <h1>Coding Quiz Challenge</h1>
+            <p>Press start to test yourself in Coding!</p>
+            <button id="start-quiz" class="btn">Start Quiz</button>
+        </div>
+
+        <!-- quiz section -->
+        <section id="quiz" style="display : none;">
+            <div id="question">
+                <p> Question: </p>
+            </div>
+            <!-- choices div-->
+            <div id="choices">
+                <!-- When user clicks "A/B/C" check answer for A/B/C -->
+                <div class="choice" id="A" onclick="checkAnswer('A')">A</div>
+                <div class="choice" id="B" onclick="checkAnswer('B')">B</div>
+                <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
+                <div class="choice" id="D" onclick="checkAnswer('D')">D</div>
+            </div>
+        </section>
+
+        <!-- Quiz is over -->
+        <section id="finalScores" style="display : none;">
+            <h1>All Done!</h1>
+            <!-- Enter initials with Submit button -->
+            <form id="form">
+                <div>
+                    <input type="text" id="total" />
+                </div>
+                <input type="text" id="total-score"/>
+                <button id="submit" class="btn">Submit</button>
+            </form>
+        </div>
+
+        <!-- last page, play again or view highscores -->
+        <section id="finalPage" style="display : none;">
+            <button id="playAgain">Play Again</button>
+            <button id="clearHighscores">Clear highscores</button>Clear highscores
+        </section> 
+        <!-- start over and run again -->
+
+    </div>
+        <script src="./script.js"></script>
+</body>
+
+</html>
