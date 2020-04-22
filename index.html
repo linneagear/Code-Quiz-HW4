@@ -14,8 +14,9 @@
             <!-- timer starts at 500 seconds -->
             <div id="counter">500</div>
         </div>
-        <div id="highscores">View Highscores</div>
+        <p class="highscores"><a href="#finalPage">View Highscores</a></p>
 
+        <!-- the first page by default will appear -->
         <div id = "startPage" style="display : block;">
             <h1>Coding Quiz Challenge</h1>
             <p>Press start to test yourself in Coding!</p>
@@ -43,17 +44,18 @@
             <!-- Enter initials with Submit button -->
             <form id="form">
                 <div>
-                    <input type="text" id="total" />
+                    <p>Your score: </p>
+                    <input type="text" id="total"/>    Enter your initials 
+                    <button id="submit" class="btn">Submit</button>
                 </div>
-                <input type="text" id="total-score"/>
-                <button id="submit" class="btn">Submit</button>
             </form>
-        </div>
+        </section>
 
         <!-- last page, play again or view highscores -->
         <section id="finalPage" style="display : none;">
-            <button id="playAgain">Play Again</button>
-            <button id="clearHighscores">Clear highscores</button>Clear highscores
+            <p class="playAgain">Play Again?</p>
+            <button id="playAgain" class="btn02">Play Again</button>
+            <button id="clearHighscores" class="btn02">Clear highscores</button>
         </section> 
         <!-- start over and run again -->
 

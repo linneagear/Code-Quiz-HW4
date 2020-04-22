@@ -1,20 +1,24 @@
 #startPage {
-    padding-top: 30px;
-    padding-left: 20px;
-    padding-right: 200px;
+    padding-top: 70px;
+    padding-left: auto;
+    padding-right: auto;
     font-family: sans-serif;
     text-align: center;
 }
 
-#highScores {
-    margin-right: 0;
-    margin-top: 0;
+a {
+    position: absolute;
+    top: 10px;
+    left: 10px;
     font-family: sans-serif;
 }
 
-#timer {
-    margin-left: 0;
-    margin-top: 0;
+#counter {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: sans-serif;
+    font-size: 20px;
 }
 
 .btn {
@@ -27,13 +31,51 @@
     cursor: pointer;
 }
 
-
-
 #question {
+    padding-top: 70px;
+    padding-left: auto;
+    padding-right: auto;
+    font-family: sans-serif;
     text-align: center;
+    font-size: 25px;
+    font-weight: bold;
 }
 
 .choice {
-    text-align: left;
-} */
+    text-align: center;
+    padding-top: 15px;
+    font-family: sans-serif;
+}
 
+#finalScores {
+    padding-top: 70px;
+    padding-left: auto;
+    padding-right: auto;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#finalPage {
+    padding-top: 70px;
+    padding-left: auto;
+    padding-right: auto;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+.btn02 {
+    background-color: rgb(39, 39, 122);
+    color: hsl(0, 0%, 100%);
+    font-size: 15px;
+    margin: 16px 16px 16px 20px;
+    padding: 10px 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.playAgain {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-align: center;
+}
