@@ -40,4 +40,5 @@ The following animation demonstrates the application functionality:
 * IF a question is answered incorrectly, the timer subtracts 10 seconds and "Wrong!", then disappears after 3 seconds
 * IF a question is answered correctly, no change, timer continues and "Correct" then disappears after 3 seconds
 * When the quiz is over, save initials and score and pushes it to the Scoreboard
+* Need function to check answer, to go to the next question, 
 
