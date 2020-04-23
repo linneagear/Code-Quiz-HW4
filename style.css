@@ -79,3 +79,11 @@ a {
     font-family: sans-serif;
     text-align: center;
 }
+
+#correct {
+    text-align: center;
+}
+
+#incorrect {
+    text-align: center;
+}
