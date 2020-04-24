@@ -57,8 +57,8 @@ var lastQuestion = questions.length - 1;
 var nextQuestionIndex = 0;
 var score = 0;
 
+// function just to list question
 function nextQuestion() {
-    console.log("hello")
     var q = questions[nextQuestionIndex];
     // replace the question/choice div with the appropriate question and choices
     question.innerHTML = q.question;
@@ -66,7 +66,6 @@ function nextQuestion() {
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
     choiceD.innerHTML = q.choiceD;
-
 }
 
 
@@ -80,7 +79,7 @@ function startQuiz() {
     setTime();
 }
 
-// more variable for timer
+// more variables for timer
 var secondsLeft = 500;
 var timerInterval;
 var timeEl = document.getElementById("counter");
@@ -107,18 +106,16 @@ function checkAnswer(event) {
  
     document.getElementById("correct").classList.add("hidden")
     document.getElementById("incorrect").classList.add("hidden")
-
+// events need to have targets
     const answer = event.currentTarget.id;
     // if question is correct, then go to next question
     if(questions[nextQuestionIndex].correct == answer) {
-        score++
         correctAnswer();
     } else {
         incorrectAnswer();
     }
     // if not the last question, then continue with next question
-    // next button doesn't go to next question, doesn't increment because this if else 
-    // is 
+    // next button doesn't go to next question, doesn't increment because this if else statement is inside a function, have to call it again outside
     goToNextQuestion();
 }
 
@@ -143,6 +140,8 @@ function skipQuestion() {
 // if correct, display Correct!
 function correctAnswer() {
     document.getElementById("correct").classList.remove("hidden"); 
+    score++;
+    console.log(score);
     nextQuestion();
 }
 
@@ -150,26 +149,42 @@ function correctAnswer() {
 function incorrectAnswer() {
     document.getElementById("incorrect").classList.remove("hidden");
     // take 10 seconds away from
+
     // timerInterval - 10;
     console.log("sdfgh")
     nextQuestion();
-
 }
 
-// var submit = document.getElementById("submit");
-// var clearHighscores = document.getElementById("clearHighscores");
-// var playAgain = document.getElementById("playAgain");
-// var scoreSpan = document.getElementById("score");
-// var finalScorePage = document.getElementById("finalScores");
+var clearHighscores = document.getElementById("clearHighscores");
+var playAgain = document.getElementById("playAgain");
 
-// // function finalScore() {
-// //     // display the last page of the quiz to show score
-// //     finalScorePage.style.display = "block";
-// //          var finalScore = 
+function finalScore() {
+    // display the last page of the quiz to show score
+    quiz.style.display = "none";
+    document.getElementById("finalScores").classList.remove("hidden");
+   
+    // stop timer
+    clearInterval(timerInterval);
+    setTimeout(finalScore, 1000);
 
-// play again : refresh, back to first page
+    // show score
+    var scoreEl = score;
+    document.querySelector("#score").textContent = scoreEl;
 
-// // }
+    // play again : refresh, back to first page
+    // when submit is pressed, goes to scorepage
+    // var submit = document.getElementById("submit");
+    // submit.addEventListener("click", scoreBoard)
+}
+
+// function scoreBoard() {
+//     document.getElementById("finalScores").classList.add("hidden");
+//     document.getElementById("finalPage").classList.remove("hidden");
+
+
+
+//     playAgain.addEventListener("click", nextQuestion)
+// }
 
 
 // add event listeners for all buttons
