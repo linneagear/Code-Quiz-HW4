@@ -24,25 +24,33 @@
         </div>
 
         <!-- quiz section -->
-        <section id="quiz"  style = "display : none">
+        <section id="quiz"  class= "hidden">
             <div id="question">
                 <p> Question: </p>
             </div>
             <!-- choices div-->
             <div id="choices">
                 <!-- When user clicks "A/B/C" check answer for A/B/C -->
-                <div class="choice" id="A" onclick="checkAnswer('A')">A</div>
-                <div class="choice" id="B" onclick="checkAnswer('B')">B</div>
-                <div class="choice" id="C" onclick="checkAnswer('C')">C</div>
-                <div class="choice" id="D" onclick="checkAnswer('D')">D</div>
-                <button id="next" class="btn">Next</button>
+                <button class="choice" id="A">A</button>
+                <br>
+                <button class="choice" id="B">B</button>
+                <br>
+                <button class="choice" id="C">C</button>
+                <br>
+                <button class="choice" id="D">D</button>
+                <br>
             </div>
-        <h4>Correct!<span id="correct" style = "display : none"></span></h4>
-        <h4>Incorrect!<span id="incorrect" style = "display : none"></span></h4>
-        </section>
+            <button id="next" class="btn">Next</button>
 
+            <div id="answer-value">
+                <h4 id="correct" class= "hidden">Correct!</h4>
+                <h4 id="incorrect" class= "hidden">Incorrect!</h4>
+            </div>
+        </section>
+        
+        
         <!-- Quiz is over -->
-        <section id="finalScores" style = "display : none">
+        <section id="finalScores" class= "hidden">
             <h1>All Done!</h1>
             <!-- Enter initials with Submit button -->
             <form id="form">
@@ -55,7 +63,7 @@
         </section>
 
         <!-- last page, play again or view highscores -->
-        <section id="finalPage"  style = "display : none">
+        <section id="finalPage"  class= "hidden">
             <p class="playAgain">Play Again?</p>
             <button id="playAgain" class="btn02">Play Again</button>
             <button id="clearHighscores" class="btn02">Clear highscores</button>

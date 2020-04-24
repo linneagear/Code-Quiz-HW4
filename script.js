@@ -58,6 +58,7 @@ var nextQuestionIndex = 0;
 var score = 0;
 
 function nextQuestion() {
+    console.log("hello")
     var q = questions[nextQuestionIndex];
     // replace the question/choice div with the appropriate question and choices
     question.innerHTML = q.question;
@@ -65,24 +66,25 @@ function nextQuestion() {
     choiceB.innerHTML = q.choiceB;
     choiceC.innerHTML = q.choiceC;
     choiceD.innerHTML = q.choiceD;
+
 }
 
-nextQuestion();
 
 function startQuiz() {
     event.preventDefault();
     // display the first question
     start.style.display = "none";
-    nextQuestion;
-    quiz.style.display = "block";
+    nextQuestion();
+    quiz.style.display = "inline-block";
     Timer();
     setTime();
 }
 
+// more variable for timer
 var secondsLeft = 500;
 var timerInterval;
 var timeEl = document.getElementById("counter");
-var count = 0;
+
 
 function setTime() {
     timerInterval = setInterval(Timer, 1000);
@@ -101,22 +103,31 @@ function Timer() {
 
 
 // run the user's answer through this function to then check using conditional statements
-function checkAnswer(answer) {
+function checkAnswer(event) {  
+ 
+    document.getElementById("correct").classList.add("hidden")
+    document.getElementById("incorrect").classList.add("hidden")
+
+    const answer = event.currentTarget.id;
     // if question is correct, then go to next question
-    if(questions[nextQuestionIndex].correct === answer) {
+    if(questions[nextQuestionIndex].correct == answer) {
         score++
         correctAnswer();
     } else {
         incorrectAnswer();
-        // timer decreases
     }
     // if not the last question, then continue with next question
-    if(nextQuestion < lastQuestion) {
-        // timer count = 0;
+    // next button doesn't go to next question, doesn't increment because this if else 
+    // is 
+    goToNextQuestion();
+}
+
+function goToNextQuestion() {
+    if(nextQuestionIndex < lastQuestion) {
         // go to next question
         nextQuestionIndex++;
         // ask the next question
-        nextQuestion;
+        nextQuestion();
     } else {
         // stop the timer and show the score
         clearInterval(Timer)
@@ -124,14 +135,25 @@ function checkAnswer(answer) {
     }
 }
 
+function skipQuestion() {
+    incorrectAnswer();
+    goToNextQuestion();
+}
+
 // if correct, display Correct!
 function correctAnswer() {
-    document.getElementById("correct").style.display = "block";    
+    document.getElementById("correct").classList.remove("hidden"); 
+    nextQuestion();
 }
 
 // if correct, display Inorrect!
 function incorrectAnswer() {
-    document.getElementById("incorrect").style.display = "block";   
+    document.getElementById("incorrect").classList.remove("hidden");
+    // take 10 seconds away from
+    // timerInterval - 10;
+    console.log("sdfgh")
+    nextQuestion();
+
 }
 
 // var submit = document.getElementById("submit");
@@ -152,3 +174,9 @@ function incorrectAnswer() {
 
 // add event listeners for all buttons
 start.addEventListener("click", startQuiz);
+choiceA.addEventListener("click", checkAnswer);
+choiceB.addEventListener("click", checkAnswer);
+choiceC.addEventListener("click", checkAnswer);
+choiceD.addEventListener("click", checkAnswer);
+next.addEventListener("click", skipQuestion);
+
