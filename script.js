@@ -7,6 +7,7 @@ var choiceB = document.getElementById('B');
 var choiceC = document.getElementById('C');
 var choiceD = document.getElementById('D');
 var next = document.getElementById("next");
+var submit = document.getElementById("submit");
 
 // have multiple questions in object
 var questions = [
@@ -57,6 +58,7 @@ var lastQuestion = questions.length - 1;
 var nextQuestionIndex = 0;
 var score = 0;
 
+
 // function just to list question
 function nextQuestion() {
     var q = questions[nextQuestionIndex];
@@ -67,7 +69,6 @@ function nextQuestion() {
     choiceC.innerHTML = q.choiceC;
     choiceD.innerHTML = q.choiceD;
 }
-
 
 function startQuiz() {
     event.preventDefault();
@@ -103,10 +104,11 @@ function Timer() {
 
 // run the user's answer through this function to then check using conditional statements
 function checkAnswer(event) {  
- 
+    event.preventDefault();
+
     document.getElementById("correct").classList.add("hidden")
     document.getElementById("incorrect").classList.add("hidden")
-// events need to have targets
+    // events need to have targets
     const answer = event.currentTarget.id;
     // if question is correct, then go to next question
     if(questions[nextQuestionIndex].correct == answer) {
@@ -148,43 +150,64 @@ function correctAnswer() {
 // if correct, display Inorrect!
 function incorrectAnswer() {
     document.getElementById("incorrect").classList.remove("hidden");
-    // take 10 seconds away from
+    // take 10 seconds away from timer
+    var x = 50;
+    var w = secondsLeft - x;
+    timeEl.textContent = w;
 
-    // timerInterval - 10;
-    console.log("sdfgh")
+    console.log("wrong")
     nextQuestion();
 }
 
-var clearHighscores = document.getElementById("clearHighscores");
-var playAgain = document.getElementById("playAgain");
-
+  
 function finalScore() {
     // display the last page of the quiz to show score
     quiz.style.display = "none";
-    document.getElementById("finalScores").classList.remove("hidden");
-   
+    document.getElementById("finalScores").style.display = "block";
+    document.getElementById("finalPage").style.display = "block";
+
     // stop timer
     clearInterval(timerInterval);
     setTimeout(finalScore, 1000);
 
-    // show score
-    var scoreEl = score;
-    document.querySelector("#score").textContent = scoreEl;
-
-    // play again : refresh, back to first page
-    // when submit is pressed, goes to scorepage
-    // var submit = document.getElementById("submit");
-    // submit.addEventListener("click", scoreBoard)
+     // show score
+   var scoreEl = score;
+   document.querySelector("#score").textContent = scoreEl;
 }
 
-// function scoreBoard() {
-//     document.getElementById("finalScores").classList.add("hidden");
-//     document.getElementById("finalPage").classList.remove("hidden");
+var initialsInput = document.querySelector("#initials-text")
+var hsForm = document.querySelector("#hs-form");
+var highscoresList = document.querySelector("#highscores");   // ul list I want to push to
+var highscores = [];
 
+function renderScoreBoard() {
+    // push initals and score to a list and display
+    highscoresList.innerHTML = "";
+    for (var i = 0; i < highscores.length; i++) {
+        var highscore = highscores[i];
 
+        var li = document.createElement("li");
+        li.textContent = highscore;
+        highscoresList.appendChild(li);
+      }
+}
 
-//     playAgain.addEventListener("click", nextQuestion)
-// }
+hsForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+  
+    var initialsText = initialsInput.value.trim();
+    // Return from function early if submitted value is blank
+    if (initialsText === "") {
+      return;
+    }
+
+    // Add new initialsText to highscores array, clear the input
+    highscores.push("Player: " + initialsText + " " + "Score: " + score);
+    initialsInput.value = "";
+  
+    // Re-render the list
+    renderScoreBoard();
+  });
 
 
 // add event listeners for all buttons
@@ -195,3 +218,4 @@ choiceC.addEventListener("click", checkAnswer);
 choiceD.addEventListener("click", checkAnswer);
 next.addEventListener("click", skipQuestion);
 
+playAgain.addEventListener("click", goToNextQuestion);

@@ -14,7 +14,6 @@
             <!-- timer starts at 500 seconds -->
             <div id="counter">500</div>
         </div>
-        <p class="highscores"><a href="#finalPage">View Highscores</a></p>
 
         <!-- the first page by default will appear -->
         <div id = "startPage" style = "display : block">
@@ -53,19 +52,17 @@
         <section id="finalScores" class= "hidden">
             <h1>All Done!</h1>
             <!-- Enter initials with Submit button -->
-            <form id="form">
-                <div>
-                    <h4>Your Score: <span id="score"></span></h4>
-                    <input type="text" id="initials"/>    Enter your initials 
-                    <button id="submit" class="btn02">Submit</button>
-                </div>
-            </form>
+            <form id="hs-form" method="POST">
+                <h4>Your Score: <span id="score"></span></h4>
+                <label for="initials-text">Enter your initials:</label>
+                <input type="text"  name="initials-text" id="initials-text" />
+              </form>
+              <ul id="highscores"></ul>
         </section>
 
         <!-- last page, play again or view highscores -->
         <section id="finalPage"  class= "hidden">
             <button id="playAgain" class="btn02">Play Again</button>
-            <button id="clearHighscores" class="btn02">Clear highscores</button>
         </section> 
         <!-- start over and run again -->
 
