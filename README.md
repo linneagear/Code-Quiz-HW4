@@ -25,20 +25,31 @@ WHEN the game is over
 THEN I can save my initials and score
 ```
 
-The following animation demonstrates the application functionality:
-
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
-
-
 ## PsuedoCode
 
-* Intro page with a button of "Start Quiz", Coding QUiz challenge
+* Intro page with a button of "Start Quiz", Coding Quiz challenge
 * Next "page" has first quiz question
 * When I click the start button, then the timer starts counting down
 * When I click a button to answer one of the 4 options, THEN goes to the next question until all questions are complete
 * WHEN all questions are answered or the timer reaches 0 the game is over
-* IF a question is answered incorrectly, the timer subtracts 10 seconds and "Wrong!", then disappears after 3 seconds
-* IF a question is answered correctly, no change, timer continues and "Correct" then disappears after 3 seconds
+* IF a question is answered incorrectly, the timer subtracts 30 seconds
+* IF a question is answered correctly, no change, timer continues and "Correct" appears
 * When the quiz is over, save initials and score and pushes it to the Scoreboard
-* Need function to check answer, to go to the next question, 
+* use local storage to save highscores
+
+# Satisfying the Criteria
+
+- When the start button is pressed, the first question is presented with all options.
+- If the answer is correct, the score goes up by one, and if it's incorrect, 50 seconds should be cut off of seconds left.
+- If next is clicked, counted as incorrect
+- At the end of the 5 question quiz, user is able to add their initials to a scoreboard of highscores
+- I wrote several functions to achieve this, to output the different outcomes like correct answer, incorrect answer, when "next" is clicked, etc.
+
+
+[Deployed link of quiz](https://linneagear.github.io/Code-Quiz-HW4/)
+
+
+# Issues
+The main issue I ran into was having the timer subtract time. I was able to subtract it, but had trouble sticking to that time and contuing after subtracting. I think I need to research and practice more on timers and intervals.
+
 

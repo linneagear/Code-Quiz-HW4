@@ -59,7 +59,7 @@ var nextQuestionIndex = 0;
 var score = 0;
 
 
-// function just to list question
+// function just to list question and options
 function nextQuestion() {
     var q = questions[nextQuestionIndex];
     // replace the question/choice div with the appropriate question and choices
@@ -81,7 +81,7 @@ function startQuiz() {
 }
 
 // more variables for timer
-var secondsLeft = 500;
+var secondsLeft = 300;
 var timerInterval;
 var timeEl = document.getElementById("counter");
 
@@ -100,7 +100,6 @@ function Timer() {
       setTimeout(renderScore, 1000);
     }
 }
-
 
 // run the user's answer through this function to then check using conditional statements
 function checkAnswer(event) {  
@@ -151,10 +150,10 @@ function correctAnswer() {
 function incorrectAnswer() {
     document.getElementById("incorrect").classList.remove("hidden");
     // take 10 seconds away from timer
-    var x = 50;
-    var w = secondsLeft - x;
-    timeEl.textContent = w;
-
+        var x = 50;
+        var w = secondsLeft - x;
+        timeEl.textContent = w;
+    
     console.log("wrong")
     nextQuestion();
 }
@@ -164,7 +163,6 @@ function finalScore() {
     // display the last page of the quiz to show score
     quiz.style.display = "none";
     document.getElementById("finalScores").style.display = "block";
-    document.getElementById("finalPage").style.display = "block";
 
     // stop timer
     clearInterval(timerInterval);
@@ -217,5 +215,3 @@ choiceB.addEventListener("click", checkAnswer);
 choiceC.addEventListener("click", checkAnswer);
 choiceD.addEventListener("click", checkAnswer);
 next.addEventListener("click", skipQuestion);
-
-playAgain.addEventListener("click", goToNextQuestion);

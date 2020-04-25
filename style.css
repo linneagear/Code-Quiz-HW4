@@ -56,13 +56,6 @@ a {
     text-align: center;
 }
 
-#finalPage {
-    padding-top: 70px;
-    padding-left: auto;
-    padding-right: auto;
-    text-align: center;
-}
-
 .btn02 {
     background-color: rgb(39, 39, 122);
     color: hsl(0, 0%, 100%);
@@ -71,12 +64,6 @@ a {
     padding: 10px 30px;
     text-align: center;
     cursor: pointer;
-}
-
-.playAgain {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
 }
 
 #correct {
