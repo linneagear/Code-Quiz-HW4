@@ -8,6 +8,7 @@ var choiceC = document.getElementById('C');
 var choiceD = document.getElementById('D');
 var next = document.getElementById("next");
 var submit = document.getElementById("submit");
+var hsForm = document.getElementById("hs-form");
 
 // have multiple questions in object
 var questions = [
@@ -74,6 +75,7 @@ function startQuiz() {
     event.preventDefault();
     // display the first question
     start.style.display = "none";
+    document.getElementById("highscores").style.display = "none";
     nextQuestion();
     quiz.style.display = "inline-block";
     Timer();
@@ -150,8 +152,7 @@ function correctAnswer() {
 function incorrectAnswer() {
     document.getElementById("incorrect").classList.remove("hidden");
     // take 10 seconds away from timer
-        var x = 50;
-        var w = secondsLeft - x;
+        var w = secondsLeft -= 50;
         timeEl.textContent = w;
     
     console.log("wrong")
@@ -174,21 +175,68 @@ function finalScore() {
 }
 
 var initialsInput = document.querySelector("#initials-text")
-var hsForm = document.querySelector("#hs-form");
-var highscoresList = document.querySelector("#highscores");   // ul list I want to push to
-var highscores = [];
+var highscoresEmptyArray = [];
 
 function renderScoreBoard() {
-    // push initals and score to a list and display
-    highscoresList.innerHTML = "";
-    for (var i = 0; i < highscores.length; i++) {
-        var highscore = highscores[i];
+    document.getElementById("highscoresSection").style.display = "block";
 
-        var li = document.createElement("li");
-        li.textContent = highscore;
-        highscoresList.appendChild(li);
-      }
+    // get scored from local storage
+    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+    
+    // sort highscores by score property in descending order
+    // highscores.sort(function(a, b) {
+    //     return b.score - a.score;
+    // });
+
+       // push initals and score to a list and display
+       highscores.innerHTML = "";
+       for (var i = 0; i < highscoresEmptyArray.length; i++) {
+           var highscore = highscoresEmptyArray[i];
+   
+           var li = document.createElement("li");
+           li.textContent = highscore;
+           highscores.appendChild(li);
+         }
+
+    // push initals and score to a list and display
+    // highscores.forEach(function(score) {
+    //     // create li tag for each high score
+    //     var liTag = document.createElement("li");
+    //     liTag.textContent = score.initials + " - " + score.score;
+    
+    //     // display on page
+    //     var olEl = document.getElementById("highscores");
+    //     olEl.appendChild(liTag);
 }
+
+function saveHighscore() {
+    // get value of input box
+    var initials = initialsInput.value.trim();
+
+// make sure value wasn't empty
+if (initials !== "") {
+    // get saved scores from localstorage, or if not any, set to empty array
+    var highscores =
+      JSON.parse(window.localStorage.getItem("highscores")) || [];
+    // format new score object for current user
+    var newScore = {
+        score: score,
+        initials: initials
+    };
+        
+      // save to localstorage
+    highscores.push(newScore);
+    window.localStorage.setItem("highscores", JSON.stringify(highscores));
+
+}
+}
+
+
+function clearHighscores() {
+    window.localStorage.removeItem("highscores");
+}
+
+document.getElementById("clear").onclick = clearHighscores;
 
 hsForm.addEventListener("submit", function(event) {
     event.preventDefault();
@@ -198,13 +246,10 @@ hsForm.addEventListener("submit", function(event) {
     if (initialsText === "") {
       return;
     }
-
-    // Add new initialsText to highscores array, clear the input
-    highscores.push("Player: " + initialsText + " " + "Score: " + score);
-    initialsInput.value = "";
   
     // Re-render the list
     renderScoreBoard();
+    saveHighscore();
   });
 
 
