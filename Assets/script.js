@@ -9,6 +9,7 @@ var choiceD = document.getElementById('D');
 var next = document.getElementById("next");
 var submit = document.getElementById("submit");
 var hsForm = document.getElementById("hs-form");
+var initialsInput = document.querySelector("#initials-text")
 
 // have multiple questions in object
 var questions = [
@@ -18,7 +19,7 @@ var questions = [
         choiceB: "Banana",
         choiceC: "Ruby",
         choiceD: "Python",
-        correct:  "B",
+        correct: "B",
     },
     {
         question: "What are people who write computer code called?",
@@ -26,7 +27,7 @@ var questions = [
         choiceB: "Professors",
         choiceC: "Programmers",
         choiceD: "Manufacturers",
-        correct:  "C",
+        correct: "C",
     },
     {
         question: "What word describes the set of instructions that computers need to work?",
@@ -34,7 +35,7 @@ var questions = [
         choiceB: "Synopsis",
         choiceC: "Blueprint",
         choiceD: "Program",
-        correct:  "D",
+        correct: "D",
     },
     {
         question: "What is computer coding?",
@@ -42,7 +43,7 @@ var questions = [
         choiceB: "Telling a computer what to do",
         choiceC: "A TV show",
         choiceD: "A list of functions",
-        correct:  "B",
+        correct: "B",
     },
     {
         question: "Which of these does NOT run using a computer program?",
@@ -50,7 +51,7 @@ var questions = [
         choiceB: "Bikes",
         choiceC: "Cars",
         choiceD: "Trains",
-        correct:  "B",
+        correct: "B",
     }
 ];
 
@@ -75,7 +76,6 @@ function startQuiz() {
     event.preventDefault();
     // display the first question
     start.style.display = "none";
-    document.getElementById("highscores").style.display = "none";
     nextQuestion();
     quiz.style.display = "inline-block";
     Timer();
@@ -90,21 +90,21 @@ var timeEl = document.getElementById("counter");
 
 function setTime() {
     timerInterval = setInterval(Timer, 1000);
-  }
+}
 // when Start Quiz button is clicked, then start timer
 function Timer() {
     secondsLeft--;
 
     timeEl.textContent = secondsLeft;
     // if time is 0, clear time interval and go to score page
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      setTimeout(renderScore, 1000);
+    if (secondsLeft === 0) {
+        clearInterval(timerInterval);
+        setTimeout(renderScore, 1000);
     }
 }
 
 // run the user's answer through this function to then check using conditional statements
-function checkAnswer(event) {  
+function checkAnswer(event) {
     event.preventDefault();
 
     document.getElementById("correct").classList.add("hidden")
@@ -112,7 +112,7 @@ function checkAnswer(event) {
     // events need to have targets
     const answer = event.currentTarget.id;
     // if question is correct, then go to next question
-    if(questions[nextQuestionIndex].correct == answer) {
+    if (questions[nextQuestionIndex].correct == answer) {
         correctAnswer();
     } else {
         incorrectAnswer();
@@ -123,7 +123,7 @@ function checkAnswer(event) {
 }
 
 function goToNextQuestion() {
-    if(nextQuestionIndex < lastQuestion) {
+    if (nextQuestionIndex < lastQuestion) {
         // go to next question
         nextQuestionIndex++;
         // ask the next question
@@ -142,7 +142,7 @@ function skipQuestion() {
 
 // if correct, display Correct!
 function correctAnswer() {
-    document.getElementById("correct").classList.remove("hidden"); 
+    document.getElementById("correct").classList.remove("hidden");
     score++;
     console.log(score);
     nextQuestion();
@@ -152,14 +152,14 @@ function correctAnswer() {
 function incorrectAnswer() {
     document.getElementById("incorrect").classList.remove("hidden");
     // take 10 seconds away from timer
-        var w = secondsLeft -= 50;
-        timeEl.textContent = w;
-    
+    var w = secondsLeft -= 50;
+    timeEl.textContent = w;
+
     console.log("wrong")
     nextQuestion();
 }
 
-  
+
 function finalScore() {
     // display the last page of the quiz to show score
     quiz.style.display = "none";
@@ -169,88 +169,48 @@ function finalScore() {
     clearInterval(timerInterval);
     setTimeout(finalScore, 1000);
 
-     // show score
-   var scoreEl = score;
-   document.querySelector("#score").textContent = scoreEl;
+    // show score
+    var scoreEl = score;
+    document.querySelector("#score").textContent = scoreEl;
 }
 
-var initialsInput = document.querySelector("#initials-text")
-var highscoresEmptyArray = [];
-
-function renderScoreBoard() {
-    document.getElementById("highscoresSection").style.display = "block";
-
-    // get scored from local storage
-    var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-    
-    // sort highscores by score property in descending order
-    // highscores.sort(function(a, b) {
-    //     return b.score - a.score;
-    // });
-
-       // push initals and score to a list and display
-       highscores.innerHTML = "";
-       for (var i = 0; i < highscoresEmptyArray.length; i++) {
-           var highscore = highscoresEmptyArray[i];
-   
-           var li = document.createElement("li");
-           li.textContent = highscore;
-           highscores.appendChild(li);
-         }
-
-    // push initals and score to a list and display
-    // highscores.forEach(function(score) {
-    //     // create li tag for each high score
-    //     var liTag = document.createElement("li");
-    //     liTag.textContent = score.initials + " - " + score.score;
-    
-    //     // display on page
-    //     var olEl = document.getElementById("highscores");
-    //     olEl.appendChild(liTag);
-}
 
 function saveHighscore() {
     // get value of input box
     var initials = initialsInput.value.trim();
 
-// make sure value wasn't empty
-if (initials !== "") {
-    // get saved scores from localstorage, or if not any, set to empty array
-    var highscores =
-      JSON.parse(window.localStorage.getItem("highscores")) || [];
-    // format new score object for current user
-    var newScore = {
-        score: score,
-        initials: initials
-    };
+    // make sure value wasn't empty
+    if (initials !== "") {
+        // get saved scores from localstorage, or if not any, set to empty array
+        var highscores =
+            JSON.parse(window.localStorage.getItem("highscores")) || [];
+        // format new score object for current user
+        var newScore = {
+            score: score,
+            initials: initials
+        };
+
+        // save to localstorage
+        highscores.push(newScore);
+        window.localStorage.setItem("highscores", JSON.stringify(highscores));
         
-      // save to localstorage
-    highscores.push(newScore);
-    window.localStorage.setItem("highscores", JSON.stringify(highscores));
-
-}
+        // redirect to next page
+        window.location.href = "scores.html";
+    }
 }
 
 
-function clearHighscores() {
-    window.localStorage.removeItem("highscores");
-}
-
-document.getElementById("clear").onclick = clearHighscores;
-
-hsForm.addEventListener("submit", function(event) {
+hsForm.addEventListener("submit", function (event) {
     event.preventDefault();
-  
+
     var initialsText = initialsInput.value.trim();
     // Return from function early if submitted value is blank
     if (initialsText === "") {
-      return;
+        return;
     }
-  
-    // Re-render the list
-    renderScoreBoard();
+
     saveHighscore();
-  });
+});
 
 
 // add event listeners for all buttons
