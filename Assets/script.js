@@ -73,7 +73,7 @@ function nextQuestion() {
 }
 
 function startQuiz() {
-    event.preventDefault();
+
     // display the first question
     start.style.display = "none";
     nextQuestion();
@@ -200,18 +200,8 @@ function saveHighscore() {
 }
 
 
-hsForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    var initialsText = initialsInput.value.trim();
-    // Return from function early if submitted value is blank
-    if (initialsText === "") {
-        return;
-    }
-
-    saveHighscore();
-});
-
+// user clicks button to submit initials
+submit.onclick = saveHighscore;
 
 // add event listeners for all buttons
 start.addEventListener("click", startQuiz);
